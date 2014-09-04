@@ -121,6 +121,10 @@
                         getAvailableMoves().length);
             },
 
+            "should be able to castle left": function () {
+                Assert.pass();
+            },
+
             name: "chess/King"
         });
 

@@ -86,6 +86,11 @@
 
                 Assert.isTrue(p.getAvailableMoves().
                     some(function (m) { return m.r === 5 && m.c === 0; }));
+
+                p.move(5, 0);
+
+                Assert.isTrue(this.b.isEmpty(4, 0));
+                Assert.areSame(p, this.b.pieceAt(5, 0));
             },
 
             "white pawn should be able to perform en passant to the right": function () {
@@ -96,6 +101,11 @@
 
                 Assert.isTrue(p.getAvailableMoves().
                     some(function (m) { return m.r === 5 && m.c === 2; }));
+
+                p.move(5, 2);
+
+                Assert.isTrue(this.b.isEmpty(4, 2));
+                Assert.areSame(p, this.b.pieceAt(5, 2));
             },
 
             "black pawn should be able to perform en passant to the left": function () {
@@ -106,6 +116,11 @@
 
                 Assert.isTrue(p.getAvailableMoves().
                     some(function (m) { return m.r === 2 && m.c === 0; }));
+
+                p.move(2, 0);
+
+                Assert.isTrue(this.b.isEmpty(3, 0));
+                Assert.areSame(p, this.b.pieceAt(2, 0));
             },
 
             "black pawn should be able to perform en passant to the right": function () {
@@ -116,6 +131,11 @@
 
                 Assert.isTrue(p.getAvailableMoves().
                     some(function (m) { return m.r === 2 && m.c === 2; }));
+
+                p.move(2, 2);
+
+                Assert.isTrue(this.b.isEmpty(3, 2));
+                Assert.areSame(p, this.b.pieceAt(2, 2));
             },
 
             "en passant should only be allowed just after the opposing pawn has just been moved": function () {
