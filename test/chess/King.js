@@ -10,6 +10,7 @@
 
         Chess = require(cwd + "/lib/chess/Chess"),
         King = require(cwd + "/lib/chess/King"),
+        Rook = require(cwd + "/lib/chess/Rook"),
 
         test = new YUITest.TestCase({
 
@@ -121,9 +122,294 @@
                         getAvailableMoves().length);
             },
 
-            "should be able to castle left": function () {
-                Assert.pass();
+            // white king - left castling
+            "white king should be able to castle left": function () {
+                var r = new Rook(true, this.c).place(0, 0);
+                var k = new King(true, this.c).place(0, 4);
+
+                Assert.isTrue(k.canCastleLeft());
             },
+
+            "white king shouldn't be able to castle left if there is no rook": function () {
+                var k = new King(true, this.c).place(0, 4);
+
+                Assert.isFalse(k.canCastleLeft());
+            },
+
+            "white king shouldn't be able to castle left if the rook has moved": function () {
+                var r = new Rook(true, this.c).place(0, 0);
+                var k = new King(true, this.c).place(0, 4);
+
+                r.hasMoved = true;
+
+                Assert.isFalse(k.canCastleLeft());
+            },
+
+            "white king shouldn't be able to castle left if the king has moved": function () {
+                var r = new Rook(true, this.c).place(0, 0);
+                var k = new King(true, this.c).place(0, 4);
+
+                k.hasMoved = true;
+
+                Assert.isFalse(k.canCastleLeft());
+            },
+
+            "white king shouldn't be able to castle left if the king is in check": function () {
+                var r = new Rook(true, this.c).place(0, 0);
+                var k = new King(true, this.c).place(0, 4);
+                this.c.whiteKing = k;
+
+                new Rook(false, this.c).place(1, 4);
+                Assert.isFalse(k.canCastleLeft());
+            },
+
+            "white king shouldn't be able to castle left if the king's passing is threatened": function () {
+                var r = new Rook(true, this.c).place(0, 0);
+                var k = new King(true, this.c).place(0, 4);
+                this.c.whiteKing = k;
+
+                new Rook(false, this.c).place(1, 3);
+                Assert.isFalse(k.canCastleLeft());
+            },
+
+            "white king shouldn't be able to castle left if the king's destination is threatened": function () {
+                var r = new Rook(true, this.c).place(0, 0);
+                var k = new King(true, this.c).place(0, 4);
+                this.c.whiteKing = k;
+
+                new Rook(false, this.c).place(1, 2);
+                Assert.isFalse(k.canCastleLeft());
+            },
+
+            "white king should castle left": function () {
+                var r = new Rook(true, this.c).place(0, 0);
+                var k = new King(true, this.c).place(0, 4);
+
+                Assert.isTrue(k.getAvailableMoves().some(function (m) {
+                    return m.r === 0 && m.c === 2; }));
+
+                k.move(0, 2);
+
+                Assert.areSame(k, this.b.pieceAt(0, 2));
+                Assert.areSame(r, this.b.pieceAt(0, 3));
+            },
+
+            // white king - right castling
+            "white king should be able to castle right": function () {
+                var r = new Rook(true, this.c).place(0, 7);
+                var k = new King(true, this.c).place(0, 4);
+
+                Assert.isTrue(k.canCastleRight());
+            },
+
+            "white king shouldn't be able to castle right if there is no rook": function () {
+                var k = new King(true, this.c).place(0, 4);
+
+                Assert.isFalse(k.canCastleRight());
+            },
+
+            "white king shouldn't be able to castle right if the rook has moved": function () {
+                var r = new Rook(true, this.c).place(0, 7);
+                var k = new King(true, this.c).place(0, 4);
+
+                r.hasMoved = true;
+
+                Assert.isFalse(k.canCastleRight());
+            },
+
+            "white king shouldn't be able to castle right if the king has moved": function () {
+                var r = new Rook(true, this.c).place(0, 7);
+                var k = new King(true, this.c).place(0, 4);
+
+                k.hasMoved = true;
+
+                Assert.isFalse(k.canCastleRight());
+            },
+
+            "white king shouldn't be able to castle right if the king is in check": function () {
+                var r = new Rook(true, this.c).place(0, 7);
+                var k = new King(true, this.c).place(0, 4);
+                this.c.whiteKing = k;
+
+                new Rook(false, this.c).place(1, 4);
+                Assert.isFalse(k.canCastleRight());
+            },
+
+            "white king shouldn't be able to castle right if the king's passing is threatened": function () {
+                var r = new Rook(true, this.c).place(0, 7);
+                var k = new King(true, this.c).place(0, 4);
+                this.c.whiteKing = k;
+
+                new Rook(false, this.c).place(1, 5);
+                Assert.isFalse(k.canCastleRight());
+            },
+
+            "white king shouldn't be able to castle right if the king's destination is threatened": function () {
+                var r = new Rook(true, this.c).place(0, 7);
+                var k = new King(true, this.c).place(0, 4);
+                this.c.whiteKing = k;
+
+                new Rook(false, this.c).place(1, 6);
+                Assert.isFalse(k.canCastleRight());
+            },
+
+            "white king should castle right": function () {
+                var r = new Rook(true, this.c).place(0, 7);
+                var k = new King(true, this.c).place(0, 4);
+
+                Assert.isTrue(k.getAvailableMoves().some(function (m) {
+                    return m.r === 0 && m.c === 6; }));
+
+                k.move(0, 6);
+
+                Assert.areSame(k, this.b.pieceAt(0, 6));
+                Assert.areSame(r, this.b.pieceAt(0, 5));
+            },
+
+            // black king - left castling
+            "black king should be able to castle left": function () {
+                var r = new Rook(false, this.c).place(7, 0);
+                var k = new King(false, this.c).place(7, 4);
+
+                Assert.isTrue(k.canCastleLeft());
+            },
+
+            "black king shouldn't be able to castle left if there is no rook": function () {
+                var k = new King(false, this.c).place(7, 4);
+
+                Assert.isFalse(k.canCastleLeft());
+            },
+
+            "black king shouldn't be able to castle left if the rook has moved": function () {
+                var r = new Rook(false, this.c).place(7, 0);
+                var k = new King(false, this.c).place(7, 4);
+
+                r.hasMoved = true;
+
+                Assert.isFalse(k.canCastleLeft());
+            },
+
+            "black king shouldn't be able to castle left if the king has moved": function () {
+                var r = new Rook(false, this.c).place(7, 0);
+                var k = new King(false, this.c).place(7, 4);
+
+                k.hasMoved = true;
+
+                Assert.isFalse(k.canCastleLeft());
+            },
+
+            "black king shouldn't be able to castle left if the king is in check": function () {
+                var r = new Rook(false, this.c).place(7, 0);
+                var k = new King(false, this.c).place(7, 4);
+                this.c.blackKing = k;
+
+                new Rook(true, this.c).place(1, 4);
+                Assert.isFalse(k.canCastleLeft());
+            },
+
+            "black king shouldn't be able to castle left if the king's passing is threatened": function () {
+                var r = new Rook(false, this.c).place(7, 0);
+                var k = new King(false, this.c).place(7, 4);
+                this.c.blackKing = k;
+
+                new Rook(true, this.c).place(1, 3);
+                Assert.isFalse(k.canCastleLeft());
+            },
+
+            "black king shouldn't be able to castle left if the king's destination is threatened": function () {
+                var r = new Rook(false, this.c).place(7, 0);
+                var k = new King(false, this.c).place(7, 4);
+                this.c.blackKing = k;
+
+                new Rook(true, this.c).place(1, 2);
+                Assert.isFalse(k.canCastleLeft());
+            },
+
+            "black king should castle left": function () {
+                var r = new Rook(false, this.c).place(7, 0);
+                var k = new King(false, this.c).place(7, 4);
+
+                Assert.isTrue(k.getAvailableMoves().some(function (m) {
+                    return m.r === 7 && m.c === 2; }));
+
+                k.move(7, 2);
+
+                Assert.areSame(k, this.b.pieceAt(7, 2));
+                Assert.areSame(r, this.b.pieceAt(7, 3));
+            },
+
+            // black king - right castling
+            "black king should be able to castle right": function () {
+                var r = new Rook(false, this.c).place(7, 7);
+                var k = new King(false, this.c).place(7, 4);
+
+                Assert.isTrue(k.canCastleRight());
+            },
+
+            "black king shouldn't be able to castle right if there is no rook": function () {
+                var k = new King(false, this.c).place(7, 4);
+
+                Assert.isFalse(k.canCastleRight());
+            },
+
+            "black king shouldn't be able to castle right if the rook has moved": function () {
+                var r = new Rook(false, this.c).place(7, 7);
+                var k = new King(false, this.c).place(7, 4);
+
+                r.hasMoved = true;
+
+                Assert.isFalse(k.canCastleRight());
+            },
+
+            "black king shouldn't be able to castle right if the king has moved": function () {
+                var r = new Rook(false, this.c).place(7, 7);
+                var k = new King(false, this.c).place(7, 4);
+
+                k.hasMoved = true;
+
+                Assert.isFalse(k.canCastleRight());
+            },
+
+            "black king shouldn't be able to castle right if the king is in check": function () {
+                var r = new Rook(false, this.c).place(7, 7);
+                var k = new King(false, this.c).place(7, 4);
+                this.c.blackKing = k;
+
+                new Rook(true, this.c).place(1, 4);
+                Assert.isFalse(k.canCastleRight());
+            },
+
+            "black king shouldn't be able to castle right if the king's passing is threatened": function () {
+                var r = new Rook(false, this.c).place(7, 7);
+                var k = new King(false, this.c).place(7, 4);
+                this.c.blackKing = k;
+
+                new Rook(true, this.c).place(1, 5);
+                Assert.isFalse(k.canCastleRight());
+            },
+
+            "black king shouldn't be able to castle right if the king's destination is threatened": function () {
+                var r = new Rook(false, this.c).place(7, 7);
+                var k = new King(false, this.c).place(7, 4);
+                this.c.blackKing = k;
+
+                new Rook(true, this.c).place(1, 6);
+                Assert.isFalse(k.canCastleRight());
+            },
+
+            "black king should castle right": function () {
+                var r = new Rook(false, this.c).place(7, 7);
+                var k = new King(false, this.c).place(7, 4);
+
+                Assert.isTrue(k.getAvailableMoves().some(function (m) {
+                    return m.r === 7 && m.c === 6; }));
+
+                k.move(7, 6);
+
+                Assert.areSame(k, this.b.pieceAt(7, 6));
+                Assert.areSame(r, this.b.pieceAt(7, 5));
+            },
+
 
             name: "chess/King"
         });
