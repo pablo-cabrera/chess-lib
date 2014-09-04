@@ -1,4 +1,1 @@
-chess
-=====
-
-A regular chess implementaion
+Foo!

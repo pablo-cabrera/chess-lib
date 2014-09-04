@@ -1,0 +1,28 @@
+{
+    "name": "chess",
+    "version": "0.0.1",
+    "author": "Pablo Cabrera <pablo.cabrera.munoz@gmail.com>",
+
+    "dependencies": {
+        "uglify-js": "2.x.x"
+    },
+
+    "devDependencies": {
+        "grunt-contrib-jshint": "*",
+        "grunt-contrib-yuidoc": "~0.4.0",
+
+        "grunt": "~0.4.0",
+        "grunt-shell": "0.2.0",
+
+        "ytestrunner": "*",
+        "yuitest": "*",
+
+        "colors": "*"
+    },
+
+    "scripts": {
+        "test": "grunt"
+    },
+
+    "license": "MIT"
+}
