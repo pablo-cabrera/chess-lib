@@ -1,9 +1,8 @@
-(function(node) {
+(function() {
     "use strict";
 
     var
-        main = node? global: window,
-        YUITest = main.YUITest || require("yuitest"),
+        YUITest = require("yuitest"),
         Assert = YUITest.Assert,
 
         cwd = process.cwd(),
@@ -18,12 +17,12 @@
                 this.b = this.c.board;
             },
 
-            "black pawn should toString to 'p'": function () {
-                Assert.areSame("p", new Pawn(false, this.c).toString());
+            "black pawn should toString to '\u265F'": function () {
+                Assert.areSame("\u265F", new Pawn(false, this.c).toString());
             },
 
-            "white pawn should toString to 'P'": function () {
-                Assert.areSame("P", new Pawn(true, this.c).toString());
+            "white pawn should toString to '\u2659'": function () {
+                Assert.areSame("\u2659", new Pawn(true, this.c).toString());
             },
 
             "pawns should be able to move forward only": function () {
@@ -81,6 +80,8 @@
             "white pawn should be able to perform en passant to the left": function () {
                 var p = new Pawn(true, this.c).place(4, 1);
 
+                this.c.turn = false;
+
                 new Pawn(false, this.c).place(6, 0).
                     move(4, 0);
 
@@ -95,6 +96,8 @@
 
             "white pawn should be able to perform en passant to the right": function () {
                 var p = new Pawn(true, this.c).place(4, 1);
+
+                this.c.turn = false;
 
                 new Pawn(false, this.c).place(6, 2).
                     move(4, 2);
@@ -197,4 +200,4 @@
         });
 
     YUITest.TestRunner.add(test);
-}(typeof exports !== "undefined" && global.exports !== exports));
+}());

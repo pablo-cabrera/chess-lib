@@ -46,6 +46,8 @@ module.exports = function(grunt) {
             files : ["Gruntfile.js", "lib/**/*.js", "test/**/*.js"]
         },
 
+        build: { target: {} },
+
         yuidoc : {
             compile: {
                 name: "<%= pkg.name %>",
@@ -68,7 +70,34 @@ module.exports = function(grunt) {
     // Local tasks
     grunt.loadTasks("tasks");
 
+    grunt.registerMultiTask("build", "builds the client game", function () {
+        var fs = require("fs");
+        var path = require("path");
+        var cwd = process.cwd();
+
+        var files = [
+            "/util/Util.js",
+            "/chess/Piece.js",
+            "/chess/Pawn.js",
+            "/chess/Knight.js",
+            "/chess/Rook.js",
+            "/chess/Bishop.js",
+            "/chess/Queen.js",
+            "/chess/King.js",
+            "/chess/Board.js",
+            "/chess/Chess.js"
+        ];
+
+        var js = ["window.chess = {};"];
+
+        files.forEach(function (f) {
+            js.push(fs.readFileSync(path.join(cwd + "/lib" + f)));
+        });
+
+        fs.writeFileSync(path.join(cwd + "/lib/client/game.js"), js.join("\n"));
+    });
+
     // Defaults
-    grunt.registerTask("default", ["jshint", "test", "yuidoc"]);
+    grunt.registerTask("default", ["jshint", "test", "build", "yuidoc"]);
 
 };

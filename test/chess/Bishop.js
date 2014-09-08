@@ -1,9 +1,8 @@
-(function(node) {
+(function() {
     "use strict";
 
     var
-        main = node? global: window,
-        YUITest = main.YUITest || require("yuitest"),
+        YUITest = require("yuitest"),
         Assert = YUITest.Assert,
 
         cwd = process.cwd(),
@@ -96,8 +95,16 @@
                         return m.r === 5 && m.c ===5; }));
             },
 
+            "black bishop should toString to '\u265D'": function () {
+                Assert.areSame("\u265D", new Bishop(false, this.c).toString());
+            },
+
+            "white bishop should toString to '\u2657'": function () {
+                Assert.areSame("\u2657", new Bishop(true, this.c).toString());
+            },
+
             name: "chess/Bishop"
         });
 
     YUITest.TestRunner.add(test);
-}(typeof exports !== "undefined" && global.exports !== exports));
+}());

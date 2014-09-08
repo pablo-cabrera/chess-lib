@@ -1,9 +1,8 @@
-(function(node) {
+(function() {
     "use strict";
 
     var
-        main = node? global: window,
-        YUITest = main.YUITest || require("yuitest"),
+        YUITest = require("yuitest"),
         Assert = YUITest.Assert,
 
         cwd = process.cwd(),
@@ -133,8 +132,16 @@
                         getAvailableMoves().length);
             },
 
+            "black queen should toString to '\u265B'": function () {
+                Assert.areSame("\u265B", new Queen(false, this.c).toString());
+            },
+
+            "white queen should toString to '\u2655'": function () {
+                Assert.areSame("\u2655", new Queen(true, this.c).toString());
+            },
+
             name: "chess/Queen"
         });
 
     YUITest.TestRunner.add(test);
-}(typeof exports !== "undefined" && global.exports !== exports));
+}());

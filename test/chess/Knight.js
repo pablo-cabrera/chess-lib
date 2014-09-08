@@ -1,9 +1,8 @@
-(function(node) {
+(function() {
     "use strict";
 
     var
-        main = node? global: window,
-        YUITest = main.YUITest || require("yuitest"),
+        YUITest = require("yuitest"),
         Assert = YUITest.Assert,
 
         cwd = process.cwd(),
@@ -89,8 +88,17 @@
                 Assert.areSame(0, k.getAvailableMoves().length);
             },
 
+            "black knight should toString to '\u265E'": function () {
+                Assert.areSame("\u265E", new Knight(false, this.c).toString());
+            },
+
+            "white knight should toString to '\u2658'": function () {
+                Assert.areSame("\u2658", new Knight(true, this.c).toString());
+            },
+
+
             name: "chess/Knight"
         });
 
     YUITest.TestRunner.add(test);
-}(typeof exports !== "undefined" && global.exports !== exports));
+}());

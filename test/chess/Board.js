@@ -1,9 +1,8 @@
-(function(node) {
+(function() {
     "use strict";
 
     var
-        main = node? global: window,
-        YUITest = main.YUITest || require("yuitest"),
+        YUITest = require("yuitest"),
         Assert = YUITest.Assert,
 
         cwd = process.cwd(),
@@ -97,4 +96,4 @@
         });
 
     YUITest.TestRunner.add(test);
-}(typeof exports !== "undefined" && global.exports !== exports));
+}());

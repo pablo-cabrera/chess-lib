@@ -1,9 +1,8 @@
-(function(node) {
+(function() {
     "use strict";
 
     var
-        main = node? global: window,
-        YUITest = main.YUITest || require("yuitest"),
+        YUITest = require("yuitest"),
         Assert = YUITest.Assert,
 
         cwd = process.cwd(),
@@ -91,6 +90,24 @@
                 Assert.isTrue(this.p.hasMoved);
             },
 
+            "the piece should not be allowed to move if if is not it's turn": function () {
+                this.c.turn = false;
+
+                try {
+                    this.p.place(0, 0).move(1, 0);
+                } catch (e) {
+                    Assert.areSame("Invalid move", e.message);
+                }
+            },
+
+            "at every move, the piece should call this.chess.nextTurn()": function () {
+                this.c.nextTurn = function () {
+                    Assert.pass();
+                };
+
+                this.p.place(0, 0).move(1, 0);
+            },
+
             "when placed, the piece should update it's coordiates": function () {
                 Assert.isUndefined(this.p.r);
                 Assert.isUndefined(this.p.c);
@@ -141,4 +158,4 @@
         });
 
     YUITest.TestRunner.add(test);
-}(typeof exports !== "undefined" && global.exports !== exports));
+}());

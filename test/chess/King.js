@@ -1,9 +1,8 @@
-(function(node) {
+(function() {
     "use strict";
 
     var
-        main = node? global: window,
-        YUITest = main.YUITest || require("yuitest"),
+        YUITest = require("yuitest"),
         Assert = YUITest.Assert,
 
         cwd = process.cwd(),
@@ -329,6 +328,8 @@
                 var r = new Rook(false, this.c).place(7, 0);
                 var k = new King(false, this.c).place(7, 4);
 
+                this.c.turn = false;
+
                 Assert.isTrue(k.getAvailableMoves().some(function (m) {
                     return m.r === 7 && m.c === 2; }));
 
@@ -401,6 +402,8 @@
                 var r = new Rook(false, this.c).place(7, 7);
                 var k = new King(false, this.c).place(7, 4);
 
+                this.c.turn = false;
+
                 Assert.isTrue(k.getAvailableMoves().some(function (m) {
                     return m.r === 7 && m.c === 6; }));
 
@@ -410,9 +413,16 @@
                 Assert.areSame(r, this.b.pieceAt(7, 5));
             },
 
+            "black king should toString to '\u265A'": function () {
+                Assert.areSame("\u265A", new King(false, this.c).toString());
+            },
+
+            "white king should toString to '\u2654'": function () {
+                Assert.areSame("\u2654", new King(true, this.c).toString());
+            },
 
             name: "chess/King"
         });
 
     YUITest.TestRunner.add(test);
-}(typeof exports !== "undefined" && global.exports !== exports));
+}());

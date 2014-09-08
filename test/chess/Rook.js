@@ -1,9 +1,8 @@
-(function(node) {
+(function() {
     "use strict";
 
     var
-        main = node? global: window,
-        YUITest = main.YUITest || require("yuitest"),
+        YUITest = require("yuitest"),
         Assert = YUITest.Assert,
 
         cwd = process.cwd(),
@@ -114,8 +113,16 @@
                         getAvailableMoves().length);
             },
 
+            "black rook should toString to '\u265C'": function () {
+                Assert.areSame("\u265C", new Rook(false, this.c).toString());
+            },
+
+            "white rook should toString to '\u2656'": function () {
+                Assert.areSame("\u2656", new Rook(true, this.c).toString());
+            },
+
             name: "chess/Rook"
         });
 
     YUITest.TestRunner.add(test);
-}(typeof exports !== "undefined" && global.exports !== exports));
+}());

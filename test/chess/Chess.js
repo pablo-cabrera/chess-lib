@@ -1,9 +1,8 @@
-(function (node) {
+(function () {
     "use strict";
 
     var
-        main = node? global: window,
-        YUITest = main.YUITest || require("yuitest"),
+        YUITest = require("yuitest"),
         Assert = YUITest.Assert,
 
         cwd = process.cwd(),
@@ -128,9 +127,14 @@
                 Assert.isFalse(this.c.inCheckMate(true));
             },
 
+            "nextTurn should switch the turn": function () {
+                Assert.isTrue(this.c.turn);
+                this.c.nextTurn();
+                Assert.isFalse(this.c.turn);
+            },
 
             name: "chess/Chess"
         });
 
     YUITest.TestRunner.add(test);
-}(typeof exports !== "undefined" && global.exports !== exports));
+}());
