@@ -18,10 +18,12 @@
             },
 
             "should be able to move only orthogonally": function () {
-                new Rook(true, this.c).
+                var moves = new Rook(true, this.c).
                     place(4, 4).
-                    getAvailableMoves().
-                    forEach(function (m) {
+                    getAvailableMoves();
+
+                Assert.areSame(14, moves.length);
+                moves.forEach(function (m) {
                         Assert.isTrue(m.r === 4 || m.c === 4);
                     });
             },
