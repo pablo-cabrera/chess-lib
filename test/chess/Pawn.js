@@ -9,6 +9,10 @@
 
         Chess = require(cwd + "/lib/chess/Chess"),
         Pawn = require(cwd + "/lib/chess/Pawn"),
+        King = require(cwd + "/lib/chess/King"),
+        Queen = require(cwd + "/lib/chess/Queen"),
+        Bishop = require(cwd + "/lib/chess/Bishop"),
+        Knight = require(cwd + "/lib/chess/Knight"),
 
         test = new YUITest.TestCase({
 
@@ -194,6 +198,18 @@
 
                 Assert.isTrue(moves.some(function (m) {
                     return m.r === 5 && m.c === 5; }));
+            },
+
+            "white pawn should be able to promote upon reaching the 8th rank": function () {
+                var p = new Pawn(true, this.c).place(6, 0);
+                p.promote(0, Knight);
+
+                var n = this.b.pieceAt(7, 0);
+                Assert.isTrue(n.white);
+                Assert.isTrue(n.hasMoved);
+                Assert.areSame(7, n.r);
+                Assert.areSame(0, n.c);
+                Assert.areSame(this.c, n.chess);
             },
 
             name: "chess/Pawn"
