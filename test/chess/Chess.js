@@ -133,6 +133,27 @@
                 Assert.isFalse(this.c.turn);
             },
 
+            "should tell that there is a stalemate if there are no moves available to the current player": function () {
+                this.c.whiteKing = new King(true, this.c).place(0, 0);
+                this.c.whiteKing.hasMoved = true;
+
+                new Rook(false, this.c).place(1, 1);
+                new Rook(false, this.c).place(2, 1);
+
+                Assert.isTrue(this.c.isStalemate());
+            },
+
+            "should tell that there is no stalemate if there are no moves available to the current player but it is in check": function () {
+                this.c.whiteKing = new King(true, this.c).place(0, 0);
+                this.c.whiteKing.hasMoved = true;
+
+                new Rook(false, this.c).place(1, 1);
+                new Rook(false, this.c).place(2, 1);
+                new Rook(false, this.c).place(1, 0);
+
+                Assert.isFalse(this.c.isStalemate());
+            },
+
             name: "chess/Chess"
         });
 
