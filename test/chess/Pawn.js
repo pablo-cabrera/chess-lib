@@ -13,6 +13,7 @@
         Queen = require(cwd + "/lib/chess/Queen"),
         Bishop = require(cwd + "/lib/chess/Bishop"),
         Knight = require(cwd + "/lib/chess/Knight"),
+        Rook = require(cwd + "/lib/chess/Rook"),
 
         test = new YUITest.TestCase({
 
@@ -210,6 +211,86 @@
                 Assert.areSame(7, n.r);
                 Assert.areSame(0, n.c);
                 Assert.areSame(this.c, n.chess);
+            },
+
+            "black pawn should be able to promote upon reaching the 8th rank": function () {
+                this.c.turn = false;
+
+                var p = new Pawn(false, this.c).place(1, 0);
+                p.promote(0, Knight);
+
+                var n = this.b.pieceAt(0, 0);
+                Assert.isFalse(n.white);
+                Assert.isTrue(n.hasMoved);
+                Assert.areSame(0, n.r);
+                Assert.areSame(0, n.c);
+                Assert.areSame(this.c, n.chess);
+            },
+
+            "pawn should be able to promote to a knight": function () {
+                var p = new Pawn(true, this.c).place(6, 0);
+                p.promote(0, Knight);
+
+                var n = this.b.pieceAt(7, 0);
+                Assert.isTrue(n.white);
+                Assert.isTrue(n.hasMoved);
+                Assert.areSame(7, n.r);
+                Assert.areSame(0, n.c);
+                Assert.isInstanceOf(Knight, n);
+            },
+
+            "pawn should be able to promote to a bishop": function () {
+                var p = new Pawn(true, this.c).place(6, 0);
+                p.promote(0, Bishop);
+
+                var n = this.b.pieceAt(7, 0);
+                Assert.isTrue(n.white);
+                Assert.isTrue(n.hasMoved);
+                Assert.areSame(7, n.r);
+                Assert.areSame(0, n.c);
+                Assert.isInstanceOf(Bishop, n);
+            },
+
+            "pawn should be able to promote to a rook": function () {
+                var p = new Pawn(true, this.c).place(6, 0);
+                p.promote(0, Rook);
+
+                var n = this.b.pieceAt(7, 0);
+                Assert.isTrue(n.white);
+                Assert.isTrue(n.hasMoved);
+                Assert.areSame(7, n.r);
+                Assert.areSame(0, n.c);
+                Assert.isInstanceOf(Rook, n);
+            },
+
+            "pawn should be able to promote to a queen": function () {
+                var p = new Pawn(true, this.c).place(6, 0);
+                p.promote(0, Queen);
+
+                var n = this.b.pieceAt(7, 0);
+                Assert.isTrue(n.white);
+                Assert.isTrue(n.hasMoved);
+                Assert.areSame(7, n.r);
+                Assert.areSame(0, n.c);
+                Assert.isInstanceOf(Queen, n);
+            },
+
+            "pawn shouldn't be able to promote to a king": function () {
+                var p = new Pawn(true, this.c).place(6, 0);
+                try {
+                    p.promote(0, King);
+                } catch (e) {
+                    Assert.areSame("Invalid promotion", e.message);
+                }
+            },
+
+            "pawn shouldn't be able to promote to another pawn": function () {
+                var p = new Pawn(true, this.c).place(6, 0);
+                try {
+                    p.promote(0, Pawn);
+                } catch (e) {
+                    Assert.areSame("Invalid promotion", e.message);
+                }
             },
 
             name: "chess/Pawn"
