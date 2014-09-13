@@ -4,7 +4,8 @@
     "author": "Pablo Cabrera <pablo.cabrera.munoz@gmail.com>",
 
     "dependencies": {
-        "uglify-js": "2.x.x"
+        "uglify-js": "2.x.x",
+        "ws": "0.4.*"
     },
 
     "devDependencies": {

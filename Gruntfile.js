@@ -78,12 +78,12 @@ module.exports = function(grunt) {
         var files = [
             "/util/Util.js",
             "/chess/Piece.js",
-            "/chess/Pawn.js",
             "/chess/Knight.js",
             "/chess/Rook.js",
             "/chess/Bishop.js",
             "/chess/Queen.js",
             "/chess/King.js",
+            "/chess/Pawn.js",
             "/chess/Board.js",
             "/chess/Chess.js"
         ];

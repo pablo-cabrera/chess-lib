@@ -1,33 +1,33 @@
 body {
-	margin: 0;
+    margin: 0;
 }
 
 table {
-	margin-left: auto;
-	margin-right: auto;
-	margin-top: 30px;
-	empty-cells: show;
-	border-spacing: 0;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    empty-cells: show;
+    border-spacing: 0;
 }
 
 td {
-	padding: 0;
-	width: 100px;
-	height: 100px;
+    padding: 0;
+    width: 50px;
+    height: 50px;
 
-	text-align: center;
+    text-align: center;
 }
 
 td.white {
-	background-color: #fff3da;
+    background-color: #fff3da;
 }
 
 td.black {
-	background-color: #ded0b2;
+    background-color: #ded0b2;
 }
 
 div.piece {
-    font-size: 60pt;
+    font-size: 35px;
     cursor: default;
 }
 
@@ -40,9 +40,19 @@ tr td.black.focus {
 }
 
 td.white.available {
-	background-color: #dbe6ff;
+    background-color: #dbe6ff;
 }
 
 td.black.available {
     background-color: #b2c0de;
+}
+
+div.log {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    width: 400px;
+    height: 50px;
+    overflow: auto;
+    border: 1px solid black;
 }
