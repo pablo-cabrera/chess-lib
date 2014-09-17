@@ -146,6 +146,120 @@
                 }
             },
 
+            "fan should start with the piece character": function () {
+                this.p.toString = function () {
+                    return "p";
+                };
+
+                this.p.place(4, 4);
+                this.p.move(4, 5);
+
+                Assert.areSame("p", this.c.lastMove().fan.charAt(0));
+            },
+
+            "fan should state the file and rank that the piece is moving to": function () {
+                this.p.toString = function () {
+                    return "p";
+                };
+
+                this.p.place(4, 4);
+                this.p.move(4, 5);
+
+                var fan = this.c.lastMove().fan;
+
+                Assert.areSame("f", fan.charAt(1));
+                Assert.areSame("5", fan.charAt(2));
+            },
+
+            "fan should state the file if there is another piece that may move to the same position and is on the same rank": function () {
+                this.p.toString = function () {
+                    return "p";
+                };
+
+                var anotherPiece = new Piece(true, this.c);
+                anotherPiece.place(4, 6);
+                anotherPiece.getMoves = this.p.getMoves;
+
+                this.p.place(4, 4);
+                this.p.move(4, 5);
+
+                Assert.areSame("pef5", this.c.lastMove().fan);
+            },
+
+            "fan should state the rank if there is another piece that may move to the same position and is on the same file": function () {
+                this.p.toString = function () {
+                    return "p";
+                };
+
+                var anotherPiece = new Piece(true, this.c);
+                anotherPiece.place(5, 4);
+                anotherPiece.getMoves = this.p.getMoves;
+
+                this.p.place(4, 4);
+                this.p.move(4, 5);
+
+                Assert.areSame("p5f5", this.c.lastMove().fan);
+            },
+
+            "fan should state the rank and file if there are 2 or more pieces that can move to the same position": function () {
+                this.p.toString = function () {
+                    return "p";
+                };
+
+                var anotherPiece = new Piece(true, this.c);
+                anotherPiece.place(5, 4);
+                anotherPiece.getMoves = this.p.getMoves;
+
+                var yetAnotherPiece = new Piece(true, this.c);
+                yetAnotherPiece.place(6, 4);
+                yetAnotherPiece.getMoves = this.p.getMoves;
+
+                this.p.place(4, 4);
+                this.p.move(4, 5);
+
+                Assert.areSame("pe5f5", this.c.lastMove().fan);
+            },
+
+            "fan should add + to the end if it renders in a check": function () {
+                this.p.toString = function () {
+                    return "p";
+                };
+
+                this.p.threatensSquare = function (r, c) {
+                    return r === 0 && c === 0;
+                };
+
+                var k = new King(false, this.c);
+                k.place(0, 0);
+
+                this.c.blackKing = k;
+
+                this.p.place(4, 4);
+                this.p.move(4, 5);
+
+                Assert.areSame("pf5+", this.c.lastMove().fan);
+            },
+
+            "fan should add # to the end if it renders in a check mate": function () {
+                this.p.toString = function () {
+                    return "p";
+                };
+
+                this.p.threatensSquare = function (r, c) {
+                    return true;
+                };
+
+                var k = new King(false, this.c);
+                k.place(0, 0);
+
+                this.c.blackKing = k;
+
+                this.p.place(4, 4);
+                this.p.move(4, 5);
+
+                Assert.areSame("pf5#", this.c.lastMove().fan);
+            },
+
             name: "chess/Piece"
         });
 
