@@ -100,14 +100,6 @@
                 }
             },
 
-            "at every move, the piece should call this.chess.nextTurn()": function () {
-                this.c.nextTurn = function () {
-                    Assert.pass();
-                };
-
-                this.p.place(0, 0).move(1, 0);
-            },
-
             "when placed, the piece should update it's coordiates": function () {
                 Assert.isUndefined(this.p.r);
                 Assert.isUndefined(this.p.c);

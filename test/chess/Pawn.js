@@ -90,6 +90,8 @@
                 new Pawn(false, this.c).place(6, 0).
                     move(4, 0);
 
+                this.c.nextTurn();
+
                 Assert.isTrue(p.getAvailableMoves().
                     some(function (m) { return m.r === 5 && m.c === 0; }));
 
@@ -107,6 +109,8 @@
                 new Pawn(false, this.c).place(6, 2).
                     move(4, 2);
 
+                this.c.nextTurn();
+
                 Assert.isTrue(p.getAvailableMoves().
                     some(function (m) { return m.r === 5 && m.c === 2; }));
 
@@ -122,6 +126,8 @@
                 new Pawn(true, this.c).place(1, 0).
                     move(3, 0);
 
+                this.c.nextTurn();
+
                 Assert.isTrue(p.getAvailableMoves().
                     some(function (m) { return m.r === 2 && m.c === 0; }));
 
@@ -136,6 +142,8 @@
 
                 new Pawn(true, this.c).place(1, 2).
                     move(3, 2);
+
+                this.c.nextTurn();
 
                 Assert.isTrue(p.getAvailableMoves().
                     some(function (m) { return m.r === 2 && m.c === 2; }));
@@ -153,8 +161,13 @@
                 new Pawn(true, this.c).place(1, 7);
 
                 this.b.pieceAt(1, 2).move(3, 2);
+                this.c.nextTurn();
+
                 this.b.pieceAt(6, 7).move(5, 7);
+                this.c.nextTurn();
+
                 this.b.pieceAt(1, 7).move(2, 7);
+                this.c.nextTurn();
 
                 p.getAvailableMoves().forEach(function (m) {
                     Assert.isFalse(m.r === 2 && m.c === 2);
