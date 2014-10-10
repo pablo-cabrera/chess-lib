@@ -17,7 +17,7 @@
         "grunt-shell": "0.2.0",
 
         "ytestrunner": "0.1.2",
-        "yuitest": "*",
+        "yuitest": "0.7.x",
 
         "colors": "*"
     },

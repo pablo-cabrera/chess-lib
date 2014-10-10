@@ -1,16 +1,19 @@
 (function() {
     "use strict";
 
-    var
+    var Delayed = require("grunt-yuitest").Delayed,
         YUITest = require("yuitest"),
-        Assert = YUITest.Assert,
+        Assert = YUITest.Assert;
 
-        cwd = process.cwd(),
+    var delayed = new Delayed();
+    module.exports = delayed;
 
-        Chess = require(cwd + "/lib/chess/Chess"),
-        Bishop = require(cwd + "/lib/chess/Bishop"),
+    modl.
+    uses("/chess/Chess").
+    uses("/chess/Bishop").
 
-        test = new YUITest.TestCase({
+    unit(function (module, Chess, Bishop) {
+        var test = new YUITest.TestCase({
 
             setUp: function() {
                 this.c = new Chess();
@@ -106,5 +109,7 @@
             name: "chess/Bishop"
         });
 
-    YUITest.TestRunner.add(test);
+        delayed.deliver(test);
+    });
+
 }());

@@ -13,7 +13,7 @@ module.exports = function(grunt) {
                 " Licensed <%= _.pluck(pkg.licenses, \"type\").join(\", \") %> */"
         },
 
-        test : {
+        yuitest: {
             files : ["test/**/*.js"]
         },
 
@@ -68,9 +68,10 @@ module.exports = function(grunt) {
     // These plugins provide necessary tasks.
     grunt.loadNpmTasks("grunt-contrib-jshint");
     grunt.loadNpmTasks("grunt-contrib-yuidoc");
+    grunt.loadNpmTasks("grunt-yuitest");
 
     // Local tasks
-    grunt.loadTasks("tasks");
+    // grunt.loadTasks("tasks");
 
     grunt.registerMultiTask("build", "builds the client game", function () {
         var fs = require("fs");
@@ -100,6 +101,6 @@ module.exports = function(grunt) {
     });
 
     // Defaults
-    grunt.registerTask("default", ["jshint", "test", "build", "yuidoc"]);
+    grunt.registerTask("default", ["jshint", "yuitest", "build", "yuidoc"]);
 
 };
