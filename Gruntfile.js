@@ -40,7 +40,9 @@ module.exports = function(grunt) {
 
                 /* environment */
                 node: true,
-                browser: true
+                browser: true,
+
+                globals: { modl: false }
             },
 
             files : ["Gruntfile.js", "lib/**/*.js", "test/**/*.js"]

@@ -6,11 +6,11 @@
         Assert = YUITest.Assert,
 
         cwd = process.cwd(),
+        ModlTest = require(cwd + "/test/modl/ModlTest"),
 
-        Chess = require(cwd + "/lib/chess/Chess"),
-        Rook = require(cwd + "/lib/chess/Rook"),
+        test = new ModlTest({
 
-        test = new YUITest.TestCase({
+            uses:
 
             setUp: function() {
                 this.c = new Chess();

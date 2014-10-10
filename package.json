@@ -5,7 +5,8 @@
 
     "dependencies": {
         "uglify-js": "2.x.x",
-        "ws": "0.4.*"
+        "ws": "0.4.*",
+        "modl": "git+ssh://git@github.com:pablo-cabrera/modl.git"
     },
 
     "devDependencies": {
