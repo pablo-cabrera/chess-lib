@@ -1,6 +1,6 @@
 {
     "project": {
-        "name": "chess",
+        "name": "chess-lib",
         "description": "",
         "version": "0.0.1",
         "url": ""

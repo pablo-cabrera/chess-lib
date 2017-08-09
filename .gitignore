@@ -2,6 +2,6 @@
 .grunt
 npm-debug.log
 node_modules
-
-test-result
+test/coverage
+test/results
 .project
