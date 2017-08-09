@@ -1,7 +1,117 @@
-(function (node) {
-    "use strict";
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>lib/Piece.js - chess-lib</title>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="shortcut icon" type="image/png" href="../assets/favicon.png">
+    <script src="http://yui.yahooapis.com/combo?3.9.1/build/yui/yui-min.js"></script>
+</head>
+<body class="yui3-skin-sam">
 
-    var Util = node? require("./Util"): window.chess.Util;
+<div id="doc">
+    <div id="hd" class="yui3-g header">
+        <div class="yui3-u-3-4">
+            
+                <h1><img src="../assets/css/logo.png" title="chess-lib"></h1>
+            
+        </div>
+        <div class="yui3-u-1-4 version">
+            <em>API Docs for: 0.0.1</em>
+        </div>
+    </div>
+    <div id="bd" class="yui3-g">
+
+        <div class="yui3-u-1-4">
+            <div id="docs-sidebar" class="sidebar apidocs">
+                <div id="api-list">
+    <h2 class="off-left">APIs</h2>
+    <div id="api-tabview" class="tabview">
+        <ul class="tabs">
+            <li><a href="#api-classes">Classes</a></li>
+            <li><a href="#api-modules">Modules</a></li>
+        </ul>
+
+        <div id="api-tabview-filter">
+            <input type="search" id="api-filter" placeholder="Type to filter APIs">
+        </div>
+
+        <div id="api-tabview-panel">
+            <ul id="api-classes" class="apis classes">
+            
+                <li><a href="../classes/chess.Bishop.html">chess.Bishop</a></li>
+            
+                <li><a href="../classes/chess.Board.html">chess.Board</a></li>
+            
+                <li><a href="../classes/chess.Chess.html">chess.Chess</a></li>
+            
+                <li><a href="../classes/chess.King.html">chess.King</a></li>
+            
+                <li><a href="../classes/chess.Knight.html">chess.Knight</a></li>
+            
+                <li><a href="../classes/chess.Move.html">chess.Move</a></li>
+            
+                <li><a href="../classes/chess.Pawn.html">chess.Pawn</a></li>
+            
+                <li><a href="../classes/chess.Piece.html">chess.Piece</a></li>
+            
+                <li><a href="../classes/chess.Place.html">chess.Place</a></li>
+            
+                <li><a href="../classes/chess.Queen.html">chess.Queen</a></li>
+            
+                <li><a href="../classes/chess.Rook.html">chess.Rook</a></li>
+            
+                <li><a href="../classes/chess.Util.html">chess.Util</a></li>
+            
+            </ul>
+
+            <ul id="api-modules" class="apis modules">
+            
+            </ul>
+        </div>
+    </div>
+</div>
+
+            </div>
+        </div>
+        <div class="yui3-u-3-4">
+                <div id="api-options">
+        Show:
+        <label for="api-show-inherited">
+            <input type="checkbox" id="api-show-inherited" checked>
+            Inherited
+        </label>
+
+        <label for="api-show-protected">
+            <input type="checkbox" id="api-show-protected">
+            Protected
+        </label>
+
+        <label for="api-show-private">
+            <input type="checkbox" id="api-show-private">
+            Private
+        </label>
+        <label for="api-show-deprecated">
+            <input type="checkbox" id="api-show-deprecated">
+            Deprecated
+        </label>
+
+    </div>
+
+
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+                        <h1 class="file-heading">File: lib/Piece.js</h1>
+
+<div class="file">
+    <pre class="code prettyprint linenums">
+(function (node) {
+    &quot;use strict&quot;;
+
+    var Util = node? require(&quot;./Util&quot;): window.chess.Util;
 
     /**
      * Represents a piece within the chess game. The base class for every other
@@ -22,7 +132,7 @@
     };
 
     /**
-     * Boolean `true` that represents a white piece
+     * Boolean &#x60;true&#x60; that represents a white piece
      *
      * @static
      * @property WHITE
@@ -31,7 +141,7 @@
     Piece.WHITE = true;
 
     /**
-     * Boolean `false` that represents a black piece
+     * Boolean &#x60;false&#x60; that represents a black piece
      *
      * @static
      * @property BLACK
@@ -60,13 +170,13 @@
             var board = chess.board;
 
             if (chess.turn !== this.white) {
-                throw new Error("Invalid move");
+                throw new Error(&quot;Invalid move&quot;);
             }
 
             if (!this.getAvailableMoves().
-                    some(function (m) { return m.r === r && m.c === c; })) {
+                    some(function (m) { return m.r === r &amp;&amp; m.c === c; })) {
 
-                throw new Error("Invalid move");
+                throw new Error(&quot;Invalid move&quot;);
             }
 
             chess.moves.push({
@@ -74,7 +184,7 @@
                 piece: this,
                 from: { r: this.r, c: this.c },
                 to: { r: r, c: c },
-                type: board.isEmpty(r, c)? "move": "capture"
+                type: board.isEmpty(r, c)? &quot;move&quot;: &quot;capture&quot;
             });
 
             board.remove(this.r, this.c);
@@ -180,7 +290,7 @@
 
         /**
          * Informs if the piece threatens a given square. Should be implemented
-         * by it's subclasses.
+         * by it&#x27;s subclasses.
          *
          * @method threatensSquare
          * @for chess.Piece
@@ -190,12 +300,12 @@
          * @return {boolean}
          */
         threatensSquare: function (r, c) {
-            throw new Error("Unimplemented method");
+            throw new Error(&quot;Unimplemented method&quot;);
         },
 
         /**
          * Returns the list of moves the piece can make. Should be implemented
-         * by it's subclasses.
+         * by it&#x27;s subclasses.
          *
          * @method getMoves
          * @for chess.Piece
@@ -203,7 +313,7 @@
          * @return {chess.Place[]}
          */
         getMoves: function () {
-            throw new Error("Unimplemented method");
+            throw new Error(&quot;Unimplemented method&quot;);
         }
     });
 
@@ -217,13 +327,13 @@
         var fan;
 
         if (chess.turn !== white) {
-            throw new Error("Invalid move");
+            throw new Error(&quot;Invalid move&quot;);
         }
 
         if (!this.getAvailableMoves().
-                some(function (m) { return m.r === r && m.c === c; })) {
+                some(function (m) { return m.r === r &amp;&amp; m.c === c; })) {
 
-            throw new Error("Invalid move");
+            throw new Error(&quot;Invalid move&quot;);
         }
 
         fan = this.toString();
@@ -231,13 +341,13 @@
         var emp = getEquallyMovingPieces.call(this, r, c);
         if (emp.length === 1) {
             fan += (emp[0].r === this.r? toFile(this.c): toRank(this.r));
-        } else if (emp.length > 1) {
+        } else if (emp.length &gt; 1) {
             fan += toFile(this.c) + toRank(this.r);
         }
 
         piece = board.pieceAt(r, c);
         if (piece !== undefined) {
-            fan += "x";
+            fan += &quot;x&quot;;
         }
 
         fan += toFile(c) + toRank(r);
@@ -247,9 +357,9 @@
 
         this.place(r, c);
         if (chess.inCheckMate(!white)) {
-            fan += "#";
+            fan += &quot;#&quot;;
         } else if (chess.inCheck(!white)) {
-            fan += "+";
+            fan += &quot;+&quot;;
         }
 
         this.place(prevR, prevC);
@@ -261,7 +371,7 @@
     };
 
     toFile = function (c) {
-        return "abcdefgh".charAt(c);
+        return &quot;abcdefgh&quot;.charAt(c);
     };
 
     toRank = function (r) {
@@ -276,16 +386,16 @@
         var r, c;
 
         var hasMove = function (m) {
-            return mr === m.r && mc === m.c;
+            return mr === m.r &amp;&amp; mc === m.c;
         };
 
-        for (r = 0; r < 8; r += 1) {
-            for (c = 0; c < 8; c += 1) {
+        for (r = 0; r &lt; 8; r += 1) {
+            for (c = 0; c &lt; 8; c += 1) {
                 piece = board.pieceAt(r, c);
-                if (piece &&
-                        piece !== this &&
-                        piece.white === white &&
-                        this.constructor === piece.constructor &&
+                if (piece &amp;&amp;
+                        piece !== this &amp;&amp;
+                        piece.white === white &amp;&amp;
+                        this.constructor === piece.constructor &amp;&amp;
                         piece.getAvailableMoves().some(hasMove)) {
 
                     pieces.push(piece);
@@ -302,4 +412,24 @@
         window.chess.Piece = Piece;
     }
 
-}(typeof exports !== "undefined" && global.exports !== exports));
+}(typeof exports !== &quot;undefined&quot; &amp;&amp; global.exports !== exports));
+
+    </pre>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script>prettyPrint();</script>
+<script src="../assets/js/yui-prettify.js"></script>
+<script src="../assets/../api.js"></script>
+<script src="../assets/js/api-filter.js"></script>
+<script src="../assets/js/api-list.js"></script>
+<script src="../assets/js/api-search.js"></script>
+<script src="../assets/js/apidocs.js"></script>
+</body>
+</html>

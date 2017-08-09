@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>lib/Pawn.js - chess-lib</title>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="shortcut icon" type="image/png" href="../assets/favicon.png">
+    <script src="http://yui.yahooapis.com/combo?3.9.1/build/yui/yui-min.js"></script>
+</head>
+<body class="yui3-skin-sam">
+
+<div id="doc">
+    <div id="hd" class="yui3-g header">
+        <div class="yui3-u-3-4">
+            
+                <h1><img src="../assets/css/logo.png" title="chess-lib"></h1>
+            
+        </div>
+        <div class="yui3-u-1-4 version">
+            <em>API Docs for: 0.0.1</em>
+        </div>
+    </div>
+    <div id="bd" class="yui3-g">
+
+        <div class="yui3-u-1-4">
+            <div id="docs-sidebar" class="sidebar apidocs">
+                <div id="api-list">
+    <h2 class="off-left">APIs</h2>
+    <div id="api-tabview" class="tabview">
+        <ul class="tabs">
+            <li><a href="#api-classes">Classes</a></li>
+            <li><a href="#api-modules">Modules</a></li>
+        </ul>
+
+        <div id="api-tabview-filter">
+            <input type="search" id="api-filter" placeholder="Type to filter APIs">
+        </div>
+
+        <div id="api-tabview-panel">
+            <ul id="api-classes" class="apis classes">
+            
+                <li><a href="../classes/chess.Bishop.html">chess.Bishop</a></li>
+            
+                <li><a href="../classes/chess.Board.html">chess.Board</a></li>
+            
+                <li><a href="../classes/chess.Chess.html">chess.Chess</a></li>
+            
+                <li><a href="../classes/chess.King.html">chess.King</a></li>
+            
+                <li><a href="../classes/chess.Knight.html">chess.Knight</a></li>
+            
+                <li><a href="../classes/chess.Move.html">chess.Move</a></li>
+            
+                <li><a href="../classes/chess.Pawn.html">chess.Pawn</a></li>
+            
+                <li><a href="../classes/chess.Piece.html">chess.Piece</a></li>
+            
+                <li><a href="../classes/chess.Place.html">chess.Place</a></li>
+            
+                <li><a href="../classes/chess.Queen.html">chess.Queen</a></li>
+            
+                <li><a href="../classes/chess.Rook.html">chess.Rook</a></li>
+            
+                <li><a href="../classes/chess.Util.html">chess.Util</a></li>
+            
+            </ul>
+
+            <ul id="api-modules" class="apis modules">
+            
+            </ul>
+        </div>
+    </div>
+</div>
+
+            </div>
+        </div>
+        <div class="yui3-u-3-4">
+                <div id="api-options">
+        Show:
+        <label for="api-show-inherited">
+            <input type="checkbox" id="api-show-inherited" checked>
+            Inherited
+        </label>
+
+        <label for="api-show-protected">
+            <input type="checkbox" id="api-show-protected">
+            Protected
+        </label>
+
+        <label for="api-show-private">
+            <input type="checkbox" id="api-show-private">
+            Private
+        </label>
+        <label for="api-show-deprecated">
+            <input type="checkbox" id="api-show-deprecated">
+            Deprecated
+        </label>
+
+    </div>
+
+
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+                        <h1 class="file-heading">File: lib/Pawn.js</h1>
+
+<div class="file">
+    <pre class="code prettyprint linenums">
+(function (node) {
+    &quot;use strict&quot;;
+
+    var Util = node? require(&quot;./Util&quot;): window.chess.Util;
+
+    var Piece = Util.dependency(&quot;Piece&quot;);
+    var Rook = Util.dependency(&quot;Rook&quot;);
+    var Knight = Util.dependency(&quot;Knight&quot;);
+    var Bishop = Util.dependency(&quot;Bishop&quot;);
+    var Queen = Util.dependency(&quot;Queen&quot;);
+
+    var enPassant;
+
+    /**
+     * Represents a pawn within the chess game.
+     *
+     * @class chess.Pawn
+     * @extends chess.Piece
+     * @constructor
+     *
+     * @param {boolean} white
+     * @param {chess.Chess} chess
+     */
+    var Pawn = function (white, chess) {
+        Piece.call(this, white, chess);
+    };
+
+    Util.extend(Pawn, Piece);
+
+    Util.merge(Pawn.prototype, {
+
+        getMoves: function () {
+            var board = this.chess.board;
+            var moves = [];
+            var w = this.white;
+            var r = this.r;
+            var c = this.c;
+            var fwd = w? 1: -1;
+            var p, m;
+            var that = this;
+
+            r += fwd;
+
+            // forward square
+            if (board.isEmpty(r, c)) {
+                moves.push({ r: r, c: c });
+            }
+
+            // forward diagonal squares
+            [c + 1, c - 1].forEach(function (c) {
+                p = board.pieceAt(r, c);
+                if (p &amp;&amp; p.white !== w) {
+                    moves.push({ r: r, c: c });
+                }
+            }, this);
+
+
+            p = enPassant.call(this);
+            if (p) {
+                moves.push({ r: r, c: p.c });
+            }
+
+            // 2nd forward square
+            if (!this.hasMoved) {
+                r += fwd;
+                if (r &gt; -1 &amp;&amp; r &lt; 8 &amp;&amp; board.isEmpty(r, c)) {
+                    moves.push({ r: r, c: c });
+                }
+            }
+
+            return moves;
+        },
+
+        move: function (r, c) {
+            var lastMove;
+            var fan;
+            var pawn = enPassant.call(this);
+            var chess = this.chess;
+            var black;
+
+            Piece.prototype.move.call(this, r, c);
+            lastMove = chess.lastMove();
+            fan = lastMove.fan.substr(1);
+
+            if (pawn &amp;&amp; c === pawn.c) {
+                black = !this.white;
+
+                lastMove.type = &quot;en passant&quot;;
+                fan = fan.replace(/\+|\#/, &quot;&quot;);
+                fan = fan.substr(0, fan.length - 2) + &quot;x&quot; + fan.substr(-2);
+
+                pawn.remove();
+
+                if (chess.inCheckMate(black)) {
+                    fan += &quot;#&quot;;
+                } else if (chess.inCheck(black)) {
+                    fan += &quot;+&quot;;
+                }
+            }
+
+            lastMove.fan = fan;
+        },
+
+        threatensSquare: function (r, c) {
+            return Math.abs(c - this.c) === 1 &amp;&amp;
+                this.r + (this.white? 1: -1) === r;
+        },
+
+        /**
+         * Promotes a pawn into another desired piece, being either Rook, Knight
+         * Bishop or Queen.
+         *
+         * @method promote
+         * @for chess.Pawn
+         *
+         * @param {integer} c The pawn&#x27;s column
+         * @param {function} T The piece type
+         */
+        promote: function (c, T) {
+            var white, chess, p, lastMove, fan;
+
+            if ([Rook, Knight, Bishop, Queen].indexOf(T) === -1) {
+                throw new Error(&quot;Invalid promotion&quot;);
+            }
+
+            white = this.white;
+            chess = this.chess;
+
+            this.move(white? 7: 0, c);
+
+            p = new T(white, chess);
+            p.hasMoved = true;
+            p.place(this.r, this.c);
+
+            lastMove = chess.lastMove();
+            fan = lastMove.fan.replace(/\+|#/, &quot;&quot;);
+            fan += &quot;=&quot; + p.toString();
+
+            if (chess.inCheckMate(!white)) {
+                fan += &quot;#&quot;;
+            } else if (chess.inCheck(!white)) {
+                fan += &quot;+&quot;;
+            }
+
+            Util.merge(lastMove, {
+                type: &quot;promotion&quot;,
+                promotion: p,
+                fan: fan
+            });
+        },
+
+        toString: function () {
+            return this.white? &quot;\u2659&quot;: &quot;\u265F&quot;;
+        }
+    });
+
+    enPassant = function () {
+        var chess = this.chess;
+        var moves = chess.moves;
+        var fifth = this.white? 4: 3;
+        var m;
+
+        if (this.r === fifth &amp;&amp; moves.length !== 0) {
+            m = chess.lastMove();
+            if (m.piece instanceof Pawn &amp;&amp;
+                    Math.abs(m.from.r - m.to.r) === 2 &amp;&amp;
+                    Math.abs(m.to.c - this.c) === 1 &amp;&amp;
+                    m.to.r === fifth) {
+
+                return m.piece;
+            }
+        }
+    };
+
+    if (node) {
+        module.exports = Pawn;
+    } else {
+        window.chess.Pawn = Pawn;
+    }
+
+}(typeof exports !== &quot;undefined&quot; &amp;&amp; global.exports !== exports));
+
+    </pre>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script>prettyPrint();</script>
+<script src="../assets/js/yui-prettify.js"></script>
+<script src="../assets/../api.js"></script>
+<script src="../assets/js/api-filter.js"></script>
+<script src="../assets/js/api-list.js"></script>
+<script src="../assets/js/api-search.js"></script>
+<script src="../assets/js/apidocs.js"></script>
+</body>
+</html>

@@ -5,9 +5,927 @@
         "version": "0.0.1",
         "url": ""
     },
-    "files": {},
+    "files": {
+        "lib/Bishop.js": {
+            "name": "lib/Bishop.js",
+            "modules": {},
+            "classes": {
+                "chess.Bishop": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "lib/Board.js": {
+            "name": "lib/Board.js",
+            "modules": {},
+            "classes": {
+                "chess.Board": 1
+            },
+            "fors": {
+                "chess.Board": 1
+            },
+            "namespaces": {}
+        },
+        "lib/Chess.js": {
+            "name": "lib/Chess.js",
+            "modules": {},
+            "classes": {
+                "chess.Chess": 1
+            },
+            "fors": {
+                "chess.Chess": 1,
+                "chess.Board": 1
+            },
+            "namespaces": {}
+        },
+        "lib/King.js": {
+            "name": "lib/King.js",
+            "modules": {},
+            "classes": {
+                "chess.King": 1
+            },
+            "fors": {
+                "chess.King": 1
+            },
+            "namespaces": {}
+        },
+        "lib/Knight.js": {
+            "name": "lib/Knight.js",
+            "modules": {},
+            "classes": {
+                "chess.Knight": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "lib/Pawn.js": {
+            "name": "lib/Pawn.js",
+            "modules": {},
+            "classes": {
+                "chess.Pawn": 1
+            },
+            "fors": {
+                "chess.Pawn": 1
+            },
+            "namespaces": {}
+        },
+        "lib/Piece.js": {
+            "name": "lib/Piece.js",
+            "modules": {},
+            "classes": {
+                "chess.Piece": 1
+            },
+            "fors": {
+                "chess.Piece": 1
+            },
+            "namespaces": {}
+        },
+        "lib/Queen.js": {
+            "name": "lib/Queen.js",
+            "modules": {},
+            "classes": {
+                "chess.Queen": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "lib/Rook.js": {
+            "name": "lib/Rook.js",
+            "modules": {},
+            "classes": {
+                "chess.Rook": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "lib/Util.js": {
+            "name": "lib/Util.js",
+            "modules": {},
+            "classes": {
+                "chess.Util": 1,
+                "chess.Place": 1,
+                "chess.Move": 1
+            },
+            "fors": {
+                "chess.Util": 1,
+                "chess.Place": 1,
+                "chess.Move": 1
+            },
+            "namespaces": {}
+        }
+    },
     "modules": {},
-    "classes": {},
-    "classitems": [],
+    "classes": {
+        "chess.Bishop": {
+            "name": "chess.Bishop",
+            "shortname": "chess.Bishop",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "lib/Bishop.js",
+            "line": 22,
+            "description": "Represents a bishop within the chess game.",
+            "extends": "chess.Piece",
+            "is_constructor": 1,
+            "params": [
+                {
+                    "name": "white",
+                    "description": "",
+                    "type": "Boolean"
+                },
+                {
+                    "name": "chess",
+                    "description": "",
+                    "type": "chess.Chess"
+                }
+            ]
+        },
+        "chess.Board": {
+            "name": "chess.Board",
+            "shortname": "chess.Board",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "lib/Board.js",
+            "line": 6,
+            "description": "Represents the chess board.",
+            "is_constructor": 1
+        },
+        "chess.Chess": {
+            "name": "chess.Chess",
+            "shortname": "chess.Chess",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "lib/Chess.js",
+            "line": 20,
+            "description": "Represents the chess game itself.",
+            "is_constructor": 1
+        },
+        "chess.King": {
+            "name": "chess.King",
+            "shortname": "chess.King",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "lib/King.js",
+            "line": 8,
+            "description": "Represents a king within the chess game.",
+            "is_constructor": 1,
+            "extends": "chess.Piece",
+            "params": [
+                {
+                    "name": "white",
+                    "description": "",
+                    "type": "Boolean"
+                },
+                {
+                    "name": "chess",
+                    "description": "",
+                    "type": "chess.Chess"
+                }
+            ]
+        },
+        "chess.Knight": {
+            "name": "chess.Knight",
+            "shortname": "chess.Knight",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "lib/Knight.js",
+            "line": 8,
+            "description": "Represents a knight within the chess game.",
+            "extends": "chess.Piece",
+            "is_constructor": 1,
+            "params": [
+                {
+                    "name": "white",
+                    "description": "",
+                    "type": "Boolean"
+                },
+                {
+                    "name": "chess",
+                    "description": "",
+                    "type": "chess.Chess"
+                }
+            ]
+        },
+        "chess.Pawn": {
+            "name": "chess.Pawn",
+            "shortname": "chess.Pawn",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "lib/Pawn.js",
+            "line": 14,
+            "description": "Represents a pawn within the chess game.",
+            "extends": "chess.Piece",
+            "is_constructor": 1,
+            "params": [
+                {
+                    "name": "white",
+                    "description": "",
+                    "type": "Boolean"
+                },
+                {
+                    "name": "chess",
+                    "description": "",
+                    "type": "chess.Chess"
+                }
+            ]
+        },
+        "chess.Piece": {
+            "name": "chess.Piece",
+            "shortname": "chess.Piece",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "lib/Piece.js",
+            "line": 6,
+            "description": "Represents a piece within the chess game. The base class for every other\npiece.",
+            "is_constructor": 1,
+            "params": [
+                {
+                    "name": "white",
+                    "description": "",
+                    "type": "Boolean"
+                },
+                {
+                    "name": "chess",
+                    "description": "",
+                    "type": "chess.Chess"
+                }
+            ]
+        },
+        "chess.Queen": {
+            "name": "chess.Queen",
+            "shortname": "chess.Queen",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "lib/Queen.js",
+            "line": 10,
+            "description": "Represents a queen within the chess game.",
+            "extends": "chess.Piece",
+            "is_constructor": 1,
+            "params": [
+                {
+                    "name": "white",
+                    "description": "",
+                    "type": "Boolean"
+                },
+                {
+                    "name": "chess",
+                    "description": "",
+                    "type": "chess.Chess"
+                }
+            ]
+        },
+        "chess.Rook": {
+            "name": "chess.Rook",
+            "shortname": "chess.Rook",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "lib/Rook.js",
+            "line": 8,
+            "description": "Represents a rook within the chess game.",
+            "extends": "chess.Piece",
+            "is_constructor": 1,
+            "params": [
+                {
+                    "name": "white",
+                    "description": "",
+                    "type": "Boolean"
+                },
+                {
+                    "name": "chess",
+                    "description": "",
+                    "type": "chess.Chess"
+                }
+            ]
+        },
+        "chess.Util": {
+            "name": "chess.Util",
+            "shortname": "chess.Util",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "lib/Util.js",
+            "line": 8,
+            "description": "Simple util class to normalize browser and node environments and a few\nmore perks.",
+            "static": 1
+        },
+        "chess.Place": {
+            "name": "chess.Place",
+            "shortname": "chess.Place",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "lib/Util.js",
+            "line": 71,
+            "description": "Pseudo-class that represents a place structure.",
+            "is_constructor": 1
+        },
+        "chess.Move": {
+            "name": "chess.Move",
+            "shortname": "chess.Move",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "lib/Util.js",
+            "line": 89,
+            "description": "Pseudo-class that represents a move structure.",
+            "is_constructor": 1
+        }
+    },
+    "classitems": [
+        {
+            "file": "lib/Board.js",
+            "line": 30,
+            "description": "Returns the piece at a given place",
+            "itemtype": "method",
+            "name": "pieceAt",
+            "params": [
+                {
+                    "name": "r",
+                    "description": "The row",
+                    "type": "Integer"
+                },
+                {
+                    "name": "c",
+                    "description": "The column",
+                    "type": "Integer"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "chess.Piece"
+            },
+            "class": "chess.Board"
+        },
+        {
+            "file": "lib/Board.js",
+            "line": 44,
+            "description": "Indicates if a given place is empty",
+            "itemtype": "method",
+            "name": "isEmpty",
+            "params": [
+                {
+                    "name": "r",
+                    "description": "The row",
+                    "type": "Integer"
+                },
+                {
+                    "name": "c",
+                    "description": "The column",
+                    "type": "Integer"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Boolean"
+            },
+            "class": "chess.Board"
+        },
+        {
+            "file": "lib/Board.js",
+            "line": 58,
+            "description": "Place a piece into the desired place",
+            "itemtype": "method",
+            "name": "place",
+            "params": [
+                {
+                    "name": "r",
+                    "description": "The row",
+                    "type": "Integer"
+                },
+                {
+                    "name": "c",
+                    "description": "The column",
+                    "type": "Integer"
+                },
+                {
+                    "name": "p",
+                    "description": "The piece",
+                    "type": "chess.Piece"
+                }
+            ],
+            "class": "chess.Board"
+        },
+        {
+            "file": "lib/Board.js",
+            "line": 72,
+            "description": "Removes a piece from the board",
+            "itemtype": "method",
+            "name": "remove",
+            "params": [
+                {
+                    "name": "r",
+                    "description": "The row",
+                    "type": "Integer"
+                },
+                {
+                    "name": "c",
+                    "description": "The column",
+                    "type": "Integer"
+                }
+            ],
+            "class": "chess.Board"
+        },
+        {
+            "file": "lib/Chess.js",
+            "line": 28,
+            "description": "Indicates who's turn it is",
+            "itemtype": "property",
+            "name": "turn",
+            "type": "{boolean}",
+            "class": "chess.Chess"
+        },
+        {
+            "file": "lib/Chess.js",
+            "line": 37,
+            "description": "The game board",
+            "itemtype": "property",
+            "name": "board",
+            "type": "{chess.Board}",
+            "class": "chess.Chess"
+        },
+        {
+            "file": "lib/Chess.js",
+            "line": 46,
+            "description": "The list o moves already performed in the game",
+            "itemtype": "property",
+            "name": "moves",
+            "type": "{chess.Move[]}",
+            "class": "chess.Chess"
+        },
+        {
+            "file": "lib/Chess.js",
+            "line": 55,
+            "description": "The list of fan moves",
+            "itemtype": "property",
+            "name": "fan",
+            "type": "{string[]}",
+            "class": "chess.Chess"
+        },
+        {
+            "file": "lib/Chess.js",
+            "line": 64,
+            "description": "The reference to the white king",
+            "itemtype": "property",
+            "name": "whiteKing",
+            "type": "{chess.King}",
+            "class": "chess.Chess"
+        },
+        {
+            "file": "lib/Chess.js",
+            "line": 73,
+            "description": "The reference to the black king",
+            "itemtype": "property",
+            "name": "blackKing",
+            "type": "{chess.King}",
+            "class": "chess.Chess"
+        },
+        {
+            "file": "lib/Chess.js",
+            "line": 82,
+            "description": "Indicates if the game has ended",
+            "itemtype": "property",
+            "name": "hasEnded",
+            "type": "{boolean}",
+            "class": "chess.Chess"
+        },
+        {
+            "file": "lib/Chess.js",
+            "line": 91,
+            "description": "Indicates the game winner",
+            "itemtype": "property",
+            "name": "winner",
+            "type": "{boolean}",
+            "class": "chess.Chess"
+        },
+        {
+            "file": "lib/Chess.js",
+            "line": 103,
+            "description": "Resets the game to the starting conditions",
+            "itemtype": "method",
+            "name": "reset",
+            "class": "chess.Board"
+        },
+        {
+            "file": "lib/Chess.js",
+            "line": 143,
+            "description": "Indicates if the given player is in check",
+            "itemtype": "method",
+            "name": "inCheck",
+            "params": [
+                {
+                    "name": "w",
+                    "description": "The white or black player",
+                    "type": "Boolean"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Boolean"
+            },
+            "class": "chess.Chess"
+        },
+        {
+            "file": "lib/Chess.js",
+            "line": 173,
+            "description": "Indicates if the given player is in check mate",
+            "itemtype": "method",
+            "name": "inCheckMate",
+            "params": [
+                {
+                    "name": "w",
+                    "description": "The white or black player",
+                    "type": "Boolean"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Boolean"
+            },
+            "class": "chess.Chess"
+        },
+        {
+            "file": "lib/Chess.js",
+            "line": 225,
+            "description": "Passes the turn to the next player",
+            "itemtype": "method",
+            "name": "nextTurn",
+            "class": "chess.Chess"
+        },
+        {
+            "file": "lib/Chess.js",
+            "line": 248,
+            "description": "Indicates if the game is a stalemate",
+            "itemtype": "method",
+            "name": "is Stalemate",
+            "return": {
+                "description": "",
+                "type": "Boolean"
+            },
+            "class": "chess.Chess"
+        },
+        {
+            "file": "lib/Chess.js",
+            "line": 275,
+            "description": "Returns the last perfomed move",
+            "itemtype": "method",
+            "name": "lastMove",
+            "return": {
+                "description": "",
+                "type": "chess.Move"
+            },
+            "class": "chess.Chess"
+        },
+        {
+            "file": "lib/King.js",
+            "line": 63,
+            "description": "Indicates if the king can castle to the left side.",
+            "itemtype": "method",
+            "name": "canCastleLeft",
+            "return": {
+                "description": "",
+                "type": "Boolean"
+            },
+            "class": "chess.King"
+        },
+        {
+            "file": "lib/King.js",
+            "line": 105,
+            "description": "Indicates if the king can castle to the right side.",
+            "itemtype": "method",
+            "name": "canCastleRight",
+            "return": {
+                "description": "",
+                "type": "Boolean"
+            },
+            "class": "chess.King"
+        },
+        {
+            "file": "lib/Pawn.js",
+            "line": 109,
+            "description": "Promotes a pawn into another desired piece, being either Rook, Knight\nBishop or Queen.",
+            "itemtype": "method",
+            "name": "promote",
+            "params": [
+                {
+                    "name": "c",
+                    "description": "The pawn's column",
+                    "type": "Integer"
+                },
+                {
+                    "name": "T",
+                    "description": "The piece type",
+                    "type": "Function"
+                }
+            ],
+            "class": "chess.Pawn"
+        },
+        {
+            "file": "lib/Piece.js",
+            "line": 24,
+            "description": "Boolean `true` that represents a white piece",
+            "static": 1,
+            "itemtype": "property",
+            "name": "WHITE",
+            "type": "{boolean}",
+            "class": "chess.Piece"
+        },
+        {
+            "file": "lib/Piece.js",
+            "line": 33,
+            "description": "Boolean `false` that represents a black piece",
+            "static": 1,
+            "itemtype": "property",
+            "name": "BLACK",
+            "type": "{boolean}",
+            "class": "chess.Piece"
+        },
+        {
+            "file": "lib/Piece.js",
+            "line": 49,
+            "description": "Perform a move for the piece given the row and column",
+            "itemtype": "method",
+            "name": "move",
+            "params": [
+                {
+                    "name": "r",
+                    "description": "The row",
+                    "type": "Integer"
+                },
+                {
+                    "name": "c",
+                    "description": "The column",
+                    "type": "Integer"
+                }
+            ],
+            "class": "chess.Piece"
+        },
+        {
+            "file": "lib/Piece.js",
+            "line": 87,
+            "description": "Places the piece within the board",
+            "itemtype": "method",
+            "name": "place",
+            "params": [
+                {
+                    "name": "r",
+                    "description": "The row",
+                    "type": "Integer"
+                },
+                {
+                    "name": "c",
+                    "description": "The column",
+                    "type": "Integer"
+                }
+            ],
+            "class": "chess.Piece"
+        },
+        {
+            "file": "lib/Piece.js",
+            "line": 104,
+            "description": "Removes the piece from the board",
+            "itemtype": "method",
+            "name": "remove",
+            "class": "chess.Piece"
+        },
+        {
+            "file": "lib/Piece.js",
+            "line": 119,
+            "description": "Informs if the piece threatens another piece.",
+            "itemtype": "method",
+            "name": "threatens",
+            "params": [
+                {
+                    "name": "p",
+                    "description": "Another piece",
+                    "type": "chess.Piece"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Boolean"
+            },
+            "class": "chess.Piece"
+        },
+        {
+            "file": "lib/Piece.js",
+            "line": 129,
+            "description": "Informs if the piece threatens a given place.",
+            "itemtype": "method",
+            "name": "threatens",
+            "params": [
+                {
+                    "name": "r",
+                    "description": "The row",
+                    "type": "Integer"
+                },
+                {
+                    "name": "c",
+                    "description": "The column",
+                    "type": "Integer"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Boolean"
+            },
+            "class": "chess.Piece"
+        },
+        {
+            "file": "lib/Piece.js",
+            "line": 148,
+            "description": "Returns a list of available places to move.",
+            "itemtype": "method",
+            "name": "getAvailableMoves",
+            "return": {
+                "description": "",
+                "type": "chess.Place[]"
+            },
+            "class": "chess.Piece"
+        },
+        {
+            "file": "lib/Piece.js",
+            "line": 181,
+            "description": "Informs if the piece threatens a given square. Should be implemented\nby it's subclasses.",
+            "itemtype": "method",
+            "name": "threatensSquare",
+            "params": [
+                {
+                    "name": "r",
+                    "description": "The row",
+                    "type": "Integer"
+                },
+                {
+                    "name": "c",
+                    "description": "The column",
+                    "type": "Integer"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Boolean"
+            },
+            "class": "chess.Piece"
+        },
+        {
+            "file": "lib/Piece.js",
+            "line": 196,
+            "description": "Returns the list of moves the piece can make. Should be implemented\nby it's subclasses.",
+            "itemtype": "method",
+            "name": "getMoves",
+            "return": {
+                "description": "",
+                "type": "chess.Place[]"
+            },
+            "class": "chess.Piece"
+        },
+        {
+            "file": "lib/Util.js",
+            "line": 17,
+            "description": "Simple js inheritance",
+            "itemtype": "method",
+            "name": "extend",
+            "params": [
+                {
+                    "name": "subClass",
+                    "description": "",
+                    "type": "Function"
+                },
+                {
+                    "name": "superClass",
+                    "description": "",
+                    "type": "Function"
+                }
+            ],
+            "class": "chess.Util"
+        },
+        {
+            "file": "lib/Util.js",
+            "line": 33,
+            "description": "Put all properties from object `b` into object `a`",
+            "itemtype": "method",
+            "name": "merge",
+            "params": [
+                {
+                    "name": "a",
+                    "description": "",
+                    "type": "Object"
+                },
+                {
+                    "name": "b",
+                    "description": "",
+                    "type": "Object"
+                }
+            ],
+            "class": "chess.Util"
+        },
+        {
+            "file": "lib/Util.js",
+            "line": 50,
+            "description": "Resolves a chess dependency",
+            "itemtype": "method",
+            "name": "dependency",
+            "params": [
+                {
+                    "name": "d",
+                    "description": "The dependency name",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "The actual dependency",
+                "type": "Mixed"
+            },
+            "class": "chess.Util"
+        },
+        {
+            "file": "lib/Util.js",
+            "line": 77,
+            "itemtype": "property",
+            "name": "r The row",
+            "type": "{integer}",
+            "class": "chess.Place"
+        },
+        {
+            "file": "lib/Util.js",
+            "line": 83,
+            "itemtype": "property",
+            "name": "c The column",
+            "type": "{integer}",
+            "class": "chess.Place"
+        },
+        {
+            "file": "lib/Util.js",
+            "line": 95,
+            "itemtype": "property",
+            "name": "fan",
+            "type": "{string}",
+            "class": "chess.Move"
+        },
+        {
+            "file": "lib/Util.js",
+            "line": 101,
+            "itemtype": "property",
+            "name": "piece",
+            "type": "{chess.Piece}",
+            "class": "chess.Move"
+        },
+        {
+            "file": "lib/Util.js",
+            "line": 107,
+            "itemtype": "property",
+            "name": "from",
+            "type": "{chess.Place}",
+            "class": "chess.Move"
+        },
+        {
+            "file": "lib/Util.js",
+            "line": 113,
+            "itemtype": "property",
+            "name": "to",
+            "type": "{chess.Place}",
+            "class": "chess.Move"
+        },
+        {
+            "file": "lib/Util.js",
+            "line": 119,
+            "description": "The move type, can be \"move\", \"capture\", \"promote\" or \"castling\"",
+            "itemtype": "property",
+            "name": "type",
+            "type": "{string}",
+            "class": "chess.Move"
+        }
+    ],
     "warnings": []
 }
