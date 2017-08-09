@@ -1,0 +1,94 @@
+{
+  "_args": [
+    [
+      {
+        "raw": "yuidoc-clear-theme@^1.0.0",
+        "scope": null,
+        "escapedName": "yuidoc-clear-theme",
+        "name": "yuidoc-clear-theme",
+        "rawSpec": "^1.0.0",
+        "spec": ">=1.0.0 <2.0.0",
+        "type": "range"
+      },
+      "/home/pablo/dev/workspace/gabarito"
+    ]
+  ],
+  "_from": "yuidoc-clear-theme@^2.0.0",
+  "_id": "yuidoc-clear-theme@2.0.0",
+  "_inBundle": false,
+  "_inCache": true,
+  "_installable": true,
+  "_integrity": "sha1-qU9ELlUDSmg11FjzL7iRLWvNQz0=",
+  "_location": "/yuidoc-clear-theme",
+  "_nodeVersion": "6.3.1",
+  "_npmOperationalInternal": {
+    "host": "packages-16-east.internal.npmjs.com",
+    "tmp": "tmp/yuidoc-clear-theme-1.0.0.tgz_1474737263538_0.4337434652261436"
+  },
+  "_npmUser": {
+    "name": "pablo",
+    "email": "pablo.cabrera.munoz@gmail.com"
+  },
+  "_npmVersion": "3.10.3",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "range",
+    "registry": true,
+    "raw": "yuidoc-clear-theme@^2.0.0",
+    "name": "yuidoc-clear-theme",
+    "escapedName": "yuidoc-clear-theme",
+    "rawSpec": "^2.0.0",
+    "saveSpec": null,
+    "fetchSpec": "^2.0.0"
+  },
+  "_requiredBy": [
+    "#DEV:/"
+  ],
+  "_resolved": "https://registry.npmjs.org/yuidoc-clear-theme/-/yuidoc-clear-theme-2.0.0.tgz",
+  "_shasum": "a94f442e55034a6835d458f32fb8912d6bcd433d",
+  "_shrinkwrap": null,
+  "_spec": "yuidoc-clear-theme@^2.0.0",
+  "_where": "/home/pablo/dev/workspace/chess-lib",
+  "author": {
+    "name": "Pablo José Cabrera Muñoz",
+    "email": "pablo.cabrera.munoz@gmail.com"
+  },
+  "bugs": {
+    "url": "https://github.com/pablo-cabrera/yuidoc-clear-theme/issues"
+  },
+  "bundleDependencies": false,
+  "dependencies": {},
+  "deprecated": false,
+  "description": "A clear theme for YUIDoc based of it's simple theme, but without colors and logo.",
+  "devDependencies": {},
+  "directories": {},
+  "dist": {
+    "shasum": "c1fa7fe3ccc45c9b736dd16fd963b1771e149ab9",
+    "tarball": "https://registry.npmjs.org/yuidoc-clear-theme/-/yuidoc-clear-theme-1.0.0.tgz"
+  },
+  "gitHead": "07b11f41065ff750a24cd809da95390c27e0844c",
+  "homepage": "https://github.com/pablo-cabrera/yuidoc-clear-theme#readme",
+  "keywords": [
+    "yuidoc",
+    "clear",
+    "theme"
+  ],
+  "license": "MIT",
+  "main": "index.js",
+  "maintainers": [
+    {
+      "name": "pablo",
+      "email": "pablo.cabrera.munoz@gmail.com"
+    }
+  ],
+  "name": "yuidoc-clear-theme",
+  "optionalDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pablo-cabrera/yuidoc-clear-theme.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "version": "2.0.0"
+}

@@ -12,8 +12,7 @@
         "grunt-gabarito": "0.0.6",
         "grunt-istanbul": "^0.8.0",
         "grunt-jscs": "^3.0.1",
-        "grunt-shell": "0.2.0",
-        "yuidoc-clear-theme": "^2.0.0"
+        "grunt-shell": "0.2.0"
     },
     "scripts": {
         "test": "grunt"
